@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POTS — Manning Park Easter</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0b1a0e;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, #1a3a1a 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, #0d2010 0%, transparent 60%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: 'Courier Prime', monospace;
+  padding: 40px 24px;
+  min-height: 100vh;
+}
+
+.card {
+  width: 680px;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 3px #5c3d1e,
+    0 0 0 6px #2d1a08,
+    0 0 0 9px #4a7a3a,
+    0 30px 70px rgba(0,0,0,0.8);
+  animation: cardIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.card-bg {
+  position: absolute; inset: 0;
+  background-color: #e8d9bc;
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0px, transparent 18px, rgba(139,90,43,0.06) 18px, rgba(139,90,43,0.06) 19px),
+    repeating-linear-gradient(180deg, transparent 0px, transparent 6px, rgba(100,60,20,0.04) 6px, rgba(100,60,20,0.04) 7px);
+  pointer-events: none; z-index: 0;
+}
+.card::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 20;
+}
+
+/* ── HEADER ── */
+.header { position: relative; overflow: hidden; z-index: 1; }
+
+.header-sky {
+  background: linear-gradient(180deg, #1a3a2a 0%, #2d5a3a 40%, #3d7a4a 100%);
+  padding: 16px 28px 0;
+  position: relative; overflow: hidden;
+}
+.header-sky::before {
+  content: '·  ·    ·  ·   ·    ·  ·';
+  position: absolute; top: 6px; left: 16px;
+  color: rgba(255,255,255,0.4); font-size: 9px; letter-spacing: 5px;
+}
+
+.header-beam {
+  background: #5c3d1e; height: 10px;
+  background-image: repeating-linear-gradient(90deg, transparent 0px, transparent 30px, rgba(0,0,0,0.15) 30px, rgba(0,0,0,0.15) 31px);
+  position: relative;
+}
+.header-beam::before, .header-beam::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 5px; background: rgba(0,0,0,0.25);
+}
+.header-beam::before { left: 36px; } .header-beam::after { left: 80px; }
+
+.location-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #4a7a3a; color: #c8f0a0;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 2px; margin-bottom: 8px;
+  position: relative; z-index: 2;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900; font-size: 110px; line-height: 0.85;
+  color: #2d1a08; letter-spacing: -3px;
+  position: relative; z-index: 1;
+  text-shadow: 2px 2px 0px rgba(92,61,30,0.3);
+}
+
+.subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 17px; color: #7a9a6a; margin-top: 7px;
+}
+
+.egg-row { display: flex; gap: 6px; margin-top: 8px; margin-bottom: 2px; }
+
+.egg-anim { animation: eggbob 2s ease-in-out infinite; transform-origin: center bottom; }
+.egg-anim:nth-child(2) { animation-delay: 0.3s; }
+.egg-anim:nth-child(3) { animation-delay: 0.6s; }
+.egg-anim:nth-child(4) { animation-delay: 0.9s; }
+.egg-anim:nth-child(5) { animation-delay: 1.2s; }
+@keyframes eggbob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+
+.pine { animation: pinesway 4s ease-in-out infinite; transform-origin: bottom center; }
+.pine:nth-child(2) { animation-delay: 0.8s; }
+.pine:nth-child(3) { animation-delay: 1.6s; }
+.pine:nth-child(4) { animation-delay: 2.4s; }
+@keyframes pinesway { 0%,100% { transform: rotate(-0.8deg); } 50% { transform: rotate(0.8deg); } }
+
+/* ── BODY ── */
+.body {
+  background: #e8d9bc;
+  background-image: repeating-linear-gradient(90deg, transparent 0px, transparent 22px, rgba(139,90,43,0.05) 22px, rgba(139,90,43,0.05) 23px);
+  padding: 18px 28px 16px;
+  position: relative; z-index: 1;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.timers {
+  display: flex; gap: 8px; margin-bottom: 16px;
+  animation: fadeUp 0.6s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.timer-badge {
+  flex: 1; background: #2d1a08; border-radius: 3px;
+  padding: 10px 14px; display: flex; align-items: center; gap: 9px;
+  border-top: 3px solid #5c3d1e; border-left: 1px solid #3d2510;
+  position: relative; overflow: hidden;
+}
+.timer-badge::after {
+  content: ''; position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid rgba(92,61,30,0.3); box-shadow: inset 0 0 0 3px rgba(92,61,30,0.15);
+}
+.timer-badge .phase { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #a07840; display: block; margin-bottom: 2px; }
+.timer-badge .duration { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 36px; color: #f0e8d5; line-height: 1; }
+.timer-icon { flex-shrink: 0; color: #a07840; }
+
+.divider {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+  animation: fadeUp 0.6s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.divider-line { flex: 1; height: 1px; background: #b8985870; }
+.divider-center { display: flex; align-items: center; gap: 5px; }
+.divider-label { font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #7a5c3a; }
+
+.rules { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+
+.rule {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 9px 12px;
+  background: rgba(92,61,30,0.07);
+  border-left: 3px solid #a07840;
+  border-radius: 0 3px 3px 0;
+  animation: fadeUp 0.6s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.rule:nth-child(2) { animation-delay: 0.55s; }
+.rule:nth-child(3) { animation-delay: 0.6s; }
+
+.rule-num {
+  font-family: 'Playfair Display', serif; font-weight: 900; font-size: 32px; line-height: 1;
+  color: #c0a060; opacity: 0.5; flex-shrink: 0; width: 26px; text-align: center;
+}
+.rule-text { font-size: 15px; line-height: 1.6; color: #3d2510; padding-top: 2px; }
+.rule-text strong { color: #5c3d1e; font-weight: 700; }
+
+.outcomes {
+  display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 14px;
+  animation: fadeUp 0.6s 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.outcome { border-radius: 3px; padding: 11px 14px; position: relative; overflow: hidden; }
+.outcome.seekers-win { background: #0f2318; border: 1px solid rgba(100,160,80,0.35); }
+.outcome-flag { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 5px; display: block; }
+.outcome.seekers-win .outcome-flag { color: #64a050; }
+.outcome-text { font-size: 14px; line-height: 1.55; color: #d8c8a8; }
+.outcome-text strong { color: #8ed870; }
+.outcome-icon { position: absolute; right: 12px; top: 12px; font-size: 24px; opacity: 0.45; }
+
+.footer {
+  border-top: 1px dashed rgba(92,61,30,0.3); padding-top: 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  animation: fadeUp 0.6s 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.footer-left { display: flex; flex-direction: column; gap: 2px; }
+.footer-label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #8b6a40; }
+.footer-val { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 19px; color: #3d2510; }
+
+.pot-row { display: flex; gap: 4px; align-items: flex-end; }
+.pot-sm { animation: wobble 2.8s ease-in-out infinite; transform-origin: bottom center; }
+.pot-sm:nth-child(2) { animation-delay: 0.35s; }
+.pot-sm:nth-child(3) { animation-delay: 0.7s; }
+.pot-sm:nth-child(4) { animation-delay: 1.05s; opacity: 0.3; }
+@keyframes wobble { 0%,100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+</style>
+</head>
+<body>
+<div class="card">
+<div class="card-bg"></div>
+
+<div class="header">
+  <div class="header-sky">
+    <svg style="position:absolute;top:10px;right:28px;opacity:0.7" width="24" height="24" viewBox="0 0 28 28">
+      <circle cx="14" cy="14" r="12" fill="#f0e090"/>
+      <circle cx="18" cy="10" r="10" fill="#2d5a3a"/>
+    </svg>
+
+    <div style="position:relative;z-index:2;padding-bottom:10px">
+      <div class="location-badge">
+        <svg width="9" height="11" viewBox="0 0 10 12"><polygon points="5,0 9,7 6,7 8,12 2,12 4,7 1,7" fill="#c8f0a0"/></svg>
+        Manning Park · Easter 2026
+      </div>
+      <div class="title">POTS</div>
+      <div class="subtitle">The Cabin Hiding Game</div>
+      <div class="egg-row">
+        <svg class="egg-anim" width="15" height="19" viewBox="0 0 18 22"><ellipse cx="9" cy="12" rx="7.5" ry="9.5" fill="#7ec8e3"/><polyline points="3,10 6,8 9,10 12,8 15,10" stroke="white" stroke-width="1.2" fill="none" opacity="0.6"/></svg>
+        <svg class="egg-anim" width="15" height="19" viewBox="0 0 18 22"><ellipse cx="9" cy="12" rx="7.5" ry="9.5" fill="#c4a0e8"/><circle cx="7" cy="10" r="1.5" fill="white" opacity="0.5"/><circle cx="11" cy="13" r="1.5" fill="white" opacity="0.5"/></svg>
+        <svg class="egg-anim" width="15" height="19" viewBox="0 0 18 22"><ellipse cx="9" cy="12" rx="7.5" ry="9.5" fill="#f0d060"/><rect x="1.5" y="10" width="15" height="4" fill="rgba(255,255,255,0.25)" rx="1"/></svg>
+        <svg class="egg-anim" width="15" height="19" viewBox="0 0 18 22"><ellipse cx="9" cy="12" rx="7.5" ry="9.5" fill="#88d8a0"/><line x1="3" y1="8" x2="15" y2="16" stroke="white" stroke-width="1" opacity="0.35"/><line x1="3" y1="12" x2="15" y2="12" stroke="white" stroke-width="1" opacity="0.35"/></svg>
+        <svg class="egg-anim" width="15" height="19" viewBox="0 0 18 22"><ellipse cx="9" cy="12" rx="7.5" ry="9.5" fill="#f0907a"/><circle cx="9" cy="9" r="1.5" fill="white" opacity="0.5"/><circle cx="6" cy="14" r="1.2" fill="white" opacity="0.45"/><circle cx="12" cy="14" r="1.2" fill="white" opacity="0.45"/></svg>
+      </div>
+    </div>
+
+    <svg width="100%" height="72" viewBox="0 0 500 72" preserveAspectRatio="none" fill="none">
+      <polygon points="0,72 55,20 110,72" fill="#1e4a2a"/>
+      <polygon points="55,20 74,32 92,14 110,72 55,72" fill="#f5f0e8" opacity="0.9"/>
+      <polygon points="75,72 158,8 240,72" fill="#254f30"/>
+      <polygon points="158,8 174,24 190,6 208,24 220,72 75,72" fill="#f5f0e8" opacity="0.88"/>
+      <polygon points="200,72 282,24 364,72" fill="#1e4a2a"/>
+      <polygon points="282,24 296,38 312,18 328,38 342,72 200,72" fill="#f5f0e8" opacity="0.85"/>
+      <polygon points="348,72 420,26 500,72" fill="#254f30"/>
+      <polygon points="420,26 434,40 448,24 462,72 348,72" fill="#f5f0e8" opacity="0.9"/>
+      <!-- Cabin -->
+      <g transform="translate(200,26)">
+        <rect x="0" y="22" width="60" height="38" fill="#1a0e06"/>
+        <polygon points="-4,24 30,4 64,24" fill="#2d1a08"/>
+        <rect x="44" y="0" width="9" height="16" fill="#1a0e06"/>
+        <circle cx="48" cy="-1" r="3.5" fill="#3a5a3a" opacity="0.5"/>
+        <circle cx="51" cy="-6" r="2.5" fill="#3a5a3a" opacity="0.3"/>
+        <rect x="5" y="29" width="13" height="12" rx="1" fill="#f0c060" opacity="0.65"/>
+        <rect x="24" y="29" width="13" height="12" rx="1" fill="#f0c060" opacity="0.65"/>
+        <rect x="22" y="40" width="16" height="20" rx="1" fill="#2d1a08"/>
+        <circle cx="34" cy="50" r="1.2" fill="#a07840" opacity="0.7"/>
+      </g>
+      <!-- Left trees -->
+      <g class="pine"><polygon points="8,72 19,46 30,72" fill="#0f2a12"/><polygon points="14,56 19,42 24,56" fill="#122e15"/></g>
+      <g class="pine"><polygon points="24,72 38,42 52,72" fill="#122e15"/><polygon points="31,56 38,36 45,56" fill="#163519"/></g>
+      <g class="pine" style="animation-delay:0.5s"><polygon points="48,72 57,50 66,72" fill="#0f2a12"/></g>
+      <!-- Right trees -->
+      <g class="pine" style="animation-delay:1.2s"><polygon points="418,72 429,46 440,72" fill="#0f2a12"/><polygon points="423,58 429,42 435,58" fill="#122e15"/></g>
+      <g class="pine" style="animation-delay:0.9s"><polygon points="434,72 448,40 462,72" fill="#122e15"/><polygon points="441,56 448,36 455,56" fill="#163519"/></g>
+      <g class="pine" style="animation-delay:1.6s"><polygon points="458,72 468,50 478,72" fill="#0f2a12"/></g>
+      <path d="M0,62 Q130,56 250,60 Q370,64 500,58 L500,72 L0,72 Z" fill="#f5f0e8" opacity="0.15"/>
+    </svg>
+  </div>
+  <div class="header-beam"></div>
+</div>
+
+<div class="body">
+
+  <div class="timers">
+    <div class="timer-badge">
+      <svg class="timer-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/>
+        <circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none"/>
+      </svg>
+      <div><span class="phase">Hide Phase</span><div class="duration">1:00</div></div>
+    </div>
+    <div class="timer-badge">
+      <svg class="timer-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/>
+      </svg>
+      <div><span class="phase">Seek Phase</span><div class="duration">1:00</div></div>
+    </div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-center">
+      <svg width="9" height="12" viewBox="0 0 10 13"><polygon points="5,0 9,7 6.5,7 8,13 2,13 3.5,7 1,7" fill="#4a7a3a"/></svg>
+      <span class="divider-label">How to Play</span>
+      <svg width="9" height="12" viewBox="0 0 10 13"><polygon points="5,0 9,7 6.5,7 8,13 2,13 3.5,7 1,7" fill="#4a7a3a"/></svg>
+    </div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="rules">
+    <div class="rule">
+      <div class="rule-num">1</div>
+      <div class="rule-text">One player is the <strong>Hider</strong>. They get <strong>60 seconds</strong> to hide all the pots anywhere in the cabin.</div>
+    </div>
+    <div class="rule">
+      <div class="rule-num">2</div>
+      <div class="rule-text">Time's up — everyone else becomes a <strong>Seeker</strong>. They now have <strong>60 seconds</strong> to find every pot.</div>
+    </div>
+    <div class="rule">
+      <div class="rule-num">3</div>
+      <div class="rule-text">When time runs out, check below to see who wins and who's hiding next.</div>
+    </div>
+  </div>
+
+  <div class="outcomes">
+    <div class="outcome seekers-win">
+      <span class="outcome-icon">🥚</span>
+      <span class="outcome-flag">Seekers Win If…</span>
+      <div class="outcome-text">All pots are found. The seeker with the <strong>most pots</strong> hides next. If not all are found, the Hider wins!</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <span class="footer-label">Players</span>
+      <span class="footer-val">3 or more</span>
+    </div>
+    <div class="pot-row">
+      <svg class="pot-sm" width="22" height="28" viewBox="0 0 28 34">
+        <rect x="7" y="3" width="14" height="12" rx="3" fill="#b8602a"/><ellipse cx="14" cy="3" rx="7" ry="2.5" fill="#7a3a10"/>
+        <path d="M3 15 Q2 15 1.5 19 L1 30 Q1 33 4 33 L24 33 Q27 33 27 30 L26.5 19 Q26 15 25 15 Z" fill="#b8602a"/>
+        <ellipse cx="14" cy="15" rx="11" ry="4" fill="#7a3a10"/>
+        <path d="M6 23 Q14 26 22 23" stroke="#f0e0c0" stroke-width="1" fill="none" opacity="0.3"/>
+      </svg>
+      <svg class="pot-sm" width="18" height="24" viewBox="0 0 28 34">
+        <rect x="7" y="3" width="14" height="12" rx="3" fill="#c4a0e8"/><ellipse cx="14" cy="3" rx="7" ry="2.5" fill="#8a60c0"/>
+        <path d="M3 15 Q2 15 1.5 19 L1 30 Q1 33 4 33 L24 33 Q27 33 27 30 L26.5 19 Q26 15 25 15 Z" fill="#c4a0e8"/>
+        <ellipse cx="14" cy="15" rx="11" ry="4" fill="#8a60c0"/>
+        <circle cx="10" cy="24" r="1.5" fill="white" opacity="0.4"/><circle cx="14" cy="27" r="1.5" fill="white" opacity="0.4"/><circle cx="18" cy="24" r="1.5" fill="white" opacity="0.4"/>
+      </svg>
+      <svg class="pot-sm" width="26" height="30" viewBox="0 0 28 34">
+        <rect x="7" y="3" width="14" height="12" rx="3" fill="#b8602a"/><ellipse cx="14" cy="3" rx="7" ry="2.5" fill="#7a3a10"/>
+        <path d="M3 15 Q2 15 1.5 19 L1 30 Q1 33 4 33 L24 33 Q27 33 27 30 L26.5 19 Q26 15 25 15 Z" fill="#b8602a"/>
+        <ellipse cx="14" cy="15" rx="11" ry="4" fill="#7a3a10"/>
+        <path d="M6 22 Q14 25 22 22" stroke="#f0e0c0" stroke-width="1" fill="none" opacity="0.3"/>
+      </svg>
+      <svg class="pot-sm" width="18" height="22" viewBox="0 0 28 34" style="opacity:0.28">
+        <rect x="7" y="3" width="14" height="12" rx="3" fill="#4a3020"/><ellipse cx="14" cy="3" rx="7" ry="2.5" fill="#2a1808"/>
+        <path d="M3 15 Q2 15 1.5 19 L1 30 Q1 33 4 33 L24 33 Q27 33 27 30 L26.5 19 Q26 15 25 15 Z" fill="#4a3020"/>
+        <ellipse cx="14" cy="15" rx="11" ry="4" fill="#2a1808"/>
+        <text x="14" y="27" text-anchor="middle" font-size="9" fill="#f0e0c0" opacity="0.7" font-family="serif">?</text>
+      </svg>
+    </div>
+  </div>
+
+</div>
+</div>
+</body>
+</html>
