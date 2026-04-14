@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,20 +9,17 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body {
-  height: 100%;
-  overflow: hidden;
-}
-
 body {
   background: #0b1a0e;
   background-image:
     radial-gradient(ellipse at 20% 50%, #1a3a1a 0%, transparent 60%),
     radial-gradient(ellipse at 80% 50%, #0d2010 0%, transparent 60%);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   font-family: 'Courier Prime', monospace;
+  padding: 40px 24px;
+  min-height: 100vh;
 }
 
 .card {
@@ -83,14 +81,14 @@ body {
 .location-badge {
   display: inline-flex; align-items: center; gap: 5px;
   background: #4a7a3a; color: #c8f0a0;
-  font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
-  padding: 3px 8px; border-radius: 2px; margin-bottom: 6px;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 2px; margin-bottom: 8px;
   position: relative; z-index: 2;
 }
 
 .title {
   font-family: 'Playfair Display', serif;
-  font-weight: 900; font-size: 78px; line-height: 0.85;
+  font-weight: 900; font-size: 110px; line-height: 0.85;
   color: #2d1a08; letter-spacing: -3px;
   position: relative; z-index: 1;
   text-shadow: 2px 2px 0px rgba(92,61,30,0.3);
@@ -98,7 +96,7 @@ body {
 
 .subtitle {
   font-family: 'Playfair Display', serif;
-  font-style: italic; font-size: 12px; color: #7a9a6a; margin-top: 5px;
+  font-style: italic; font-size: 17px; color: #7a9a6a; margin-top: 7px;
 }
 
 .egg-row { display: flex; gap: 6px; margin-top: 8px; margin-bottom: 2px; }
@@ -145,8 +143,8 @@ body {
   width: 16px; height: 16px; border-radius: 50%;
   border: 2px solid rgba(92,61,30,0.3); box-shadow: inset 0 0 0 3px rgba(92,61,30,0.15);
 }
-.timer-badge .phase { font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; color: #a07840; display: block; margin-bottom: 1px; }
-.timer-badge .duration { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 26px; color: #f0e8d5; line-height: 1; }
+.timer-badge .phase { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #a07840; display: block; margin-bottom: 2px; }
+.timer-badge .duration { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 36px; color: #f0e8d5; line-height: 1; }
 .timer-icon { flex-shrink: 0; color: #a07840; }
 
 .divider {
@@ -155,7 +153,7 @@ body {
 }
 .divider-line { flex: 1; height: 1px; background: #b8985870; }
 .divider-center { display: flex; align-items: center; gap: 5px; }
-.divider-label { font-size: 8px; letter-spacing: 0.26em; text-transform: uppercase; color: #7a5c3a; }
+.divider-label { font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #7a5c3a; }
 
 .rules { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
 
@@ -171,10 +169,10 @@ body {
 .rule:nth-child(3) { animation-delay: 0.6s; }
 
 .rule-num {
-  font-family: 'Playfair Display', serif; font-weight: 900; font-size: 24px; line-height: 1;
-  color: #c0a060; opacity: 0.5; flex-shrink: 0; width: 20px; text-align: center;
+  font-family: 'Playfair Display', serif; font-weight: 900; font-size: 32px; line-height: 1;
+  color: #c0a060; opacity: 0.5; flex-shrink: 0; width: 26px; text-align: center;
 }
-.rule-text { font-size: 11.5px; line-height: 1.55; color: #3d2510; padding-top: 2px; }
+.rule-text { font-size: 15px; line-height: 1.6; color: #3d2510; padding-top: 2px; }
 .rule-text strong { color: #5c3d1e; font-weight: 700; }
 
 .outcomes {
@@ -183,11 +181,11 @@ body {
 }
 .outcome { border-radius: 3px; padding: 11px 14px; position: relative; overflow: hidden; }
 .outcome.seekers-win { background: #0f2318; border: 1px solid rgba(100,160,80,0.35); }
-.outcome-flag { font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 4px; display: block; }
+.outcome-flag { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 5px; display: block; }
 .outcome.seekers-win .outcome-flag { color: #64a050; }
-.outcome-text { font-size: 11px; line-height: 1.5; color: #d8c8a8; }
+.outcome-text { font-size: 14px; line-height: 1.55; color: #d8c8a8; }
 .outcome-text strong { color: #8ed870; }
-.outcome-icon { position: absolute; right: 10px; top: 10px; font-size: 18px; opacity: 0.45; }
+.outcome-icon { position: absolute; right: 12px; top: 12px; font-size: 24px; opacity: 0.45; }
 
 .footer {
   border-top: 1px dashed rgba(92,61,30,0.3); padding-top: 12px;
@@ -195,8 +193,8 @@ body {
   animation: fadeUp 0.6s 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .footer-left { display: flex; flex-direction: column; gap: 2px; }
-.footer-label { font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: #8b6a40; }
-.footer-val { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 14px; color: #3d2510; }
+.footer-label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #8b6a40; }
+.footer-val { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 19px; color: #3d2510; }
 
 .pot-row { display: flex; gap: 4px; align-items: flex-end; }
 .pot-sm { animation: wobble 2.8s ease-in-out infinite; transform-origin: bottom center; }
